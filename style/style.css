@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.content {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    margin-top:300px;
+}
+
+.content .btn{
+}
+
+.content a{
+    text-decoration: none;
+    background-color: dimgray;
+    padding: 20px 100px;
+    margin: 0px 10px;
+    color: aliceblue;
+}
+
+.content a:hover{
+    background-color: rgb(58, 58, 58);
+    color: rgb(212, 219, 225);    
+}

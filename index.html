@@ -1,1 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>測驗</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <style>
+        /* 在這裡添加您的 CSS 樣式 */
+    </style>
+</head>
+
+<body>
+    <div id="block1">
+        <h1>歡迎來到測驗</h1>
+        <button onclick="startTest()">Start</button>
+    </div>
+
+    <div id="block2" style="display: none;">
+        <h2>第一題</h2>
+        <button onclick="recordAnswer('option1')">選項1</button>
+        <button onclick="recordAnswer('option2')">選項2</button>
+    </div>
+
+    <div id="block3" style="display: none;">
+        <h2>第二題</h2>
+        <button onclick="recordAnswer('option1')">選項1</button>
+        <button onclick="recordAnswer('option2')">選項2</button>
+    </div>
+
+    <div id="block4" style="display: none;">
+        <h2>第三題</h2>
+        <button onclick="recordAnswer('option1')">選項1</button>
+        <button onclick="recordAnswer('option2')">選項2</button>
+    </div>
+
+    <div id="result" style="display: none;">
+        <h2>測驗結果</h2>
+        <p id="finalResult"></p>
+    </div>
+
+    <script>
+        let answers = [];
+
+        function startTest() {
+            document.getElementById('block1').style.display = 'none';
+            document.getElementById('block2').style.display = 'block';
+        }
+
+        function recordAnswer(option) {
+            answers.push(option);
+            if (answers.length === 1) {
+                document.getElementById('block2').style.display = 'none';
+                document.getElementById('block3').style.display = 'block';
+            } else if (answers.length === 2) {
+                document.getElementById('block3').style.display = 'none';
+                document.getElementById('block4').style.display = 'block';
+            } else if (answers.length === 3) {
+                document.getElementById('block4').style.display = 'none';
+                showResult();
+            }
+        }
+
+        function showResult() {
+            let result = '';
+
+            // 隱藏測試結果標題和答案文字
+            document.getElementById('result').style.display = 'none';
+
+            // 隱藏h2標題
+            document.querySelector('#result h2').style.display = 'none';
+
+
+            // 根據答案顯示不同的圖片
+            let resultImage;
+            if (answers[0] === 'option1' && answers[1] === 'option1' && answers[2] === 'option1') {
+                resultImage = 'images/Answer_A.jpg';
+
+            } else if (answers[0] === 'option1' && answers[1] === 'option1' && answers[2] === 'option2') {
+                resultImage = 'images/Answer_B.jpg';
+
+            } else if (answers[0] === 'option1' && answers[1] === 'option2' && answers[2] === 'option2') {
+                resultImage = 'images/Answer_C.jpg';
+
+            } else if (answers[0] === 'option2' && answers[1] === 'option2' && answers[2] === 'option2') {
+                resultImage = 'images/Answer_D.jpg';
+
+            } else if (answers[0] === 'option2' && answers[1] === 'option2' && answers[2] === 'option1') {
+                resultImage = 'images/Answer_E.jpg';
+
+            } else if (answers[0] === 'option2' && answers[1] === 'option1' && answers[2] === 'option1') {
+                resultImage = 'images/Answer_F.jpg';  
+
+            } else if (answers[0] === 'option2' && answers[1] === 'option1' && answers[2] === 'option2') {
+                resultImage = 'images/Answer_G.jpg'; 
+
+            } else if (answers[0] === 'option1' && answers[1] === 'option2' && answers[2] === 'option1') {
+                resultImage = 'images/Answer_H.jpg';       
+
+            } else {
+                resultImage = 'default.jpg'; // 如果沒有符合的條件，可以顯示一個預設的圖片
+            }
+
+            // 顯示圖片
+            const imageElement = document.createElement('img');
+            imageElement.src = resultImage;
+            document.getElementById('result').appendChild(imageElement);
+
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
